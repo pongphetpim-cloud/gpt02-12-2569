@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI ช่วยงาน ภาค 2 — คู่มือผู้เรียน</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#171a20; --ink2:#3d4450; --ink3:#6b7484;
+  --paper:#faf8f4; --card:#ffffff; --line:#e4e0d8;
+  --brand:#0e5e58; --brand-soft:#e1f0ed;
+  --g:#0f7a4a; --g-soft:#e8f5ee;
+  --y:#a8690a; --y-soft:#fdf3e2;
+  --b:#1c5f9e; --b-soft:#e9f2fa;
+  --code-bg:#1b2130; --code-ink:#e8ecf4;
+  --radius:12px;
+  --font:"IBM Plex Sans Thai","Noto Sans Thai","Leelawadee UI",Tahoma,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:78px}
+body{font-family:var(--font);background:var(--paper);color:var(--ink);
+  font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(250,248,244,.93);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hwrap{max-width:1080px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:18px}
+.brand{font-weight:700;font-size:16.5px;letter-spacing:-.2px;white-space:nowrap}
+.brand span{color:var(--brand)}
+nav{display:flex;gap:3px;overflow-x:auto;scrollbar-width:none;flex:1}
+nav::-webkit-scrollbar{display:none}
+nav a{font-size:13.5px;color:var(--ink2);text-decoration:none;padding:6px 10px;border-radius:7px;
+  white-space:nowrap;transition:.15s}
+nav a:hover{background:var(--brand-soft);color:var(--brand)}
+
+/* ---------- layout ---------- */
+main{max-width:1080px;margin:0 auto;padding:34px 22px 90px}
+h1{font-size:clamp(28px,4.4vw,40px);line-height:1.22;letter-spacing:-.6px;margin-bottom:10px}
+.sub{font-size:17px;color:var(--ink2);max-width:62ch;margin-bottom:30px}
+h2{font-size:clamp(21px,3vw,27px);letter-spacing:-.3px;margin:0 0 6px}
+h3{font-size:17.5px;margin:0 0 4px;letter-spacing:-.1px}
+section{margin-top:52px;scroll-margin-top:80px}
+.shead{border-top:3px solid var(--ink);padding-top:14px;margin-bottom:22px;
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.tag{font-size:12.5px;font-weight:700;letter-spacing:1.6px;color:var(--brand);
+  background:var(--brand-soft);padding:3px 10px;border-radius:5px;white-space:nowrap}
+.time{font-size:13.5px;color:var(--ink3);margin-left:auto;font-variant-numeric:tabular-nums}
+.lead{color:var(--ink2);max-width:66ch;margin-bottom:18px}
+
+/* ---------- cards ---------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:16px}
+.card.tint{background:var(--brand-soft);border-color:#c4e0da}
+.chead{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.num{width:26px;height:26px;flex:none;border-radius:7px;background:var(--ink);color:#fff;
+  display:grid;place-items:center;font-size:13px;font-weight:700}
+.badge{font-size:12px;font-weight:700;padding:2.5px 9px;border-radius:20px;white-space:nowrap}
+.b-g{background:var(--g-soft);color:var(--g)}
+.b-y{background:var(--y-soft);color:var(--y)}
+.b-b{background:var(--b-soft);color:var(--b)}
+
+/* ---------- prompt block ---------- */
+.pbox{position:relative;margin:12px 0 8px}
+pre{background:var(--code-bg);color:var(--code-ink);border-radius:10px;
+  padding:18px 20px 18px;font-family:var(--font);
+  font-size:14.2px;line-height:1.72;white-space:pre-wrap;word-break:break-word;
+  overflow-x:auto;tab-size:2}
+.copy{position:absolute;top:9px;right:9px;background:#33405c;color:#dfe6f2;border:0;
+  font-family:var(--font);font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:7px;
+  cursor:pointer;transition:.15s;opacity:.92}
+.copy:hover{background:#455574;opacity:1}
+.copy.ok{background:var(--g);color:#fff}
+.hint{font-size:14px;color:var(--ink3);border-left:3px solid var(--line);padding-left:12px;margin-top:10px}
+.hint b{color:var(--ink2)}
+
+/* ---------- misc ---------- */
+.note{border-left:4px solid var(--y);background:var(--y-soft);padding:14px 18px;
+  border-radius:0 10px 10px 0;margin:16px 0;font-size:15px}
+.note b{color:var(--y)}
+.win{border-left:4px solid var(--g);background:var(--g-soft);padding:14px 18px;
+  border-radius:0 10px 10px 0;margin:16px 0;font-size:15px}
+.win b{color:var(--g)}
+ul,ol{margin:8px 0 8px 22px}li{margin-bottom:5px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px}
+th{background:#f1eee8;text-align:left;padding:9px 12px;border-bottom:2px solid var(--line);font-size:13.5px}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+kbd{background:#eceae4;border:1px solid #d5d1c8;border-bottom-width:2px;border-radius:5px;
+  padding:1px 6px;font-size:13px;font-family:var(--font)}
+.file{display:inline-block;background:#f1eee8;border:1px solid var(--line);border-radius:6px;
+  padding:2px 9px;font-size:13.5px;font-family:Consolas,var(--font);color:var(--ink2)}
+.jot{width:100%;min-height:70px;border:1px dashed #c9c4b8;border-radius:9px;background:#fdfcfa;
+  padding:11px 14px;font-family:var(--font);font-size:14.5px;color:var(--ink);resize:vertical;
+  margin-top:10px;line-height:1.6}
+.jot:focus{outline:2px solid var(--brand);border-color:transparent}
+.jot::placeholder{color:#b3aea3}
+footer{border-top:1px solid var(--line);margin-top:70px;padding-top:22px;
+  font-size:14px;color:var(--ink3);text-align:center}
+
+@media(max-width:640px){
+  body{font-size:15.5px}
+  main{padding:26px 16px 70px}
+  .card{padding:16px 15px}
+  pre{font-size:13.4px;padding:16px 15px}
+  .hwrap{padding:9px 16px;gap:12px}
+  .brand{font-size:15px}
+}
+@media print{
+  header{display:none} body{background:#fff;font-size:12px}
+  .card{break-inside:avoid;border-color:#ccc} pre{background:#f4f4f4;color:#111;font-size:11px}
+  .copy,.jot{display:none} section{break-before:auto}
+}
+
+.num{width:auto;min-width:26px;padding:0 7px}
+.tag.nb{background:#ece9fd;color:#5b46d6}
+.b-nb{background:#ece9fd;color:#5b46d6}
+.stuck{border:1px solid #f0d9b5;background:#fffaf1;border-radius:10px;padding:12px 16px;margin-top:12px;font-size:14.5px}
+.stuck > b{display:block;color:var(--y);font-size:13px;letter-spacing:1px;margin-bottom:4px}
+.stuck ul{margin:4px 0 0 20px}
+.steps6{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.steps6 div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-weight:600;font-size:15px}
+.steps6 b{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:6px;background:#5b46d6;color:#fff;font-size:13px;margin-right:8px}
+.toc{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 22px;margin:8px 0 0;padding:0;list-style:none}
+.toc a{color:var(--ink);text-decoration:none;border-bottom:1px dashed var(--line)}
+.toc a:hover{color:var(--brand)}
+.pm{font-size:12px;font-weight:700;color:#a8690a;background:#fdf3e2;padding:2px 8px;border-radius:5px;margin-left:6px}
+@media(max-width:640px){.steps6,.toc{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="hwrap"><div class="brand">AI ช่วยงาน <span>ภาค 2</span></div><nav><a href="#start">ก่อนเริ่ม</a><a href="#nb">1 · NotebookLM</a><a href="#cg">2 · ChatGPT ใหม่</a><a href="#formula">3 · สูตรอัปเกรด</a><a href="#lab">4 · Lab UC1–UC4</a><a href="#work">5 · ChatGPT Work</a><a href="#extra">โมดูลเสริม E1–E4</a><a href="#rules">6 · กติกา + การบ้าน</a></nav></div></header>
+<main>
+<h1>คู่มือผู้เรียน · AI ช่วยงาน ภาค 2</h1>
+<p class="sub">ทำสไลด์ประชุมใน 30 นาทีด้วย NotebookLM + มอบงานให้ ChatGPT ทำทั้งชิ้น · พุธ 2 ธันวาคม 2569<br>
+ทุก prompt มีปุ่ม <b>คัดลอก</b> มุมขวาบน · ช่องเส้นประใช้จดโน้ต (บันทึกในเครื่องนี้อัตโนมัติ)</p>
+<div class="card"><h3>สารบัญ</h3><ul class="toc"><li><a href="#start">ก่อนเริ่ม</a></li><li><a href="#nb">1 · NotebookLM</a></li><li><a href="#cg">2 · ChatGPT ใหม่</a></li><li><a href="#formula">3 · สูตรอัปเกรด</a></li><li><a href="#lab">4 · Lab UC1–UC4</a></li><li><a href="#work">5 · ChatGPT Work</a></li><li><a href="#extra">โมดูลเสริม E1–E4</a></li><li><a href="#rules">6 · กติกา + การบ้าน</a></li></ul></div>
+<section id="start"><div class="shead"><span class="tag">ก่อนเริ่ม</span><h2>เตรียม 3 อย่าง</h2></div><div class="card tint"><ol>
+<li>เปิด <b>notebooklm.google.com</b> ในแท็บหนึ่ง ล็อกอินบัญชี Google (Gmail ส่วนตัวก็ได้)</li>
+<li>เปิด <b>chatgpt.com</b> อีกแท็บ ล็อกอินให้เรียบร้อย</li>
+<li>แตกไฟล์ zip แล้วเปิดโฟลเดอร์ <span class="file">assets</span> ไว้ — อ่าน <span class="file">อ่านก่อน.txt</span> 1 นาที</li>
+</ol></div>
+<div class="note"><b>ใช้ ChatGPT ฟรี?</b> ทั้งคลาสอัปโหลดไฟล์เข้า ChatGPT แค่ 1 ไฟล์ (UC2) ไฟล์ .txt .md .csv ให้เปิดด้วย Notepad แล้วคัดลอกมาวาง ได้ผลเท่ากัน
+ส่วนไฟล์ที่ใส่ NotebookLM ใช้โควตาแยก ไม่กินของ ChatGPT</div>
+<div class="win"><b>บริษัทสมมติวันนี้:</b> บจก. หอมกรุ่น ฟู้ดแอนด์กิฟท์ — โรงงานขนมไทย ของฝาก และกระเช้าปีใหม่ ที่สามพราน นครปฐม พนักงาน 82 คน
+ตอนนี้ต้นเดือน ธ.ค. ช่วงงานล้นที่สุดของปี · งานแรกของคุณ: <i>"ช่วยทำสไลด์สรุปปีนี้ เข้าประชุมผู้บริหาร 18 ธ.ค. หน่อยนะ"</i> — คุณกมลวรรณ กรรมการผู้จัดการ</div></section><section id="nb"><div class="shead"><span class="tag nb">ช่วง 1</span><h2>ทำสไลด์ประชุมด้วย NotebookLM</h2><span class=time>28 + 20 นาที</span></div><p class="lead">NotebookLM (ชื่อใหม่ Gemini Notebook) ตอบจากเอกสารที่คุณใส่เท่านั้น และบอกที่มาทุกประโยค — เหมาะกับงานที่ต้องอิงเอกสารจริง</p><div class="steps6"><div><b>1</b>ใส่ไฟล์</div><div><b>2</b>ถามดูว่าเข้าใจถูก</div><div><b>3</b>Slide deck + prompt</div><div><b>4</b>ระหว่างรอ ทำงานอื่น</div><div><b>5</b>ตรวจ 3 อย่าง แล้วสั่งแก้</div><div><b>6</b>ดาวน์โหลด + ซ้อมตอบ</div></div><div class="card"><div class="chead"><span class="num">1</span><h3>สร้างสมุด + ใส่ไฟล์</h3><span class="badge b-nb">NotebookLM</span><span class="badge b-g">ฟรีทำได้</span></div><ol>
+<li>เปิด <b>notebooklm.google.com</b> → กด <b>+ New notebook</b> (มุมขวาบน)</li>
+<li>กด <b>Upload files</b> เลือก 3 ไฟล์พร้อมกัน: <span class="file">NB1-รายงานผลงานปี2569.pdf</span> <span class="file">NB2-แผนงานและเป้าหมายปี2570.md</span> <span class="file">NB3-เสียงลูกค้าและทีมงาน.txt</span></li>
+<li>รอ 10–20 วินาที มันจะสรุปให้เอง · ชื่อสมุดที่มันตั้งให้อาจผิด คลิกที่ชื่อแล้วแก้ได้</li></ol><div class="stuck"><b>ถ้าติด ทำแบบนี้</b><ul><li>เข้าไม่ได้ / ขึ้นว่าไม่มีสิทธิ์ → บัญชีบริษัทบางที่ปิดไว้ ให้ใช้ Gmail ส่วนตัว</li><li>หาไฟล์ไม่เจอ → ยังไม่ได้แตก zip (คลิกขวา → Extract All)</li><li>ล็อกอินไม่ได้เลย → ดูจอเพื่อนข้าง ๆ ไปก่อน แล้วลองใหม่ตอนพัก</li></ul></div></div><div class="card"><div class="chead"><span class="num">2</span><h3>ถาม 3 คำถาม — ดูว่ามันเข้าใจเอกสารถูกไหม</h3><span class="badge b-nb">NotebookLM</span><span class="badge b-g">ฟรีทำได้</span></div><p>วางทีละข้อในช่องแชตกลางจอ แล้วกดตัวเลข [1] ท้ายประโยคเพื่อดูว่ามาจากหน้าไหน</p><div class="pbox"><pre>ปี 2569 บริษัททำยอดขายได้เท่าไหร่ เทียบกับเป้าและปีก่อนเป็นยังไง
+ตอบสั้น ๆ ไม่เกิน 3 บรรทัด</pre></div><div class="pbox"><pre>ปัญหาใหญ่ที่สุด 3 เรื่องของปีนี้มีอะไรบ้าง
+แต่ละเรื่องเสียหายเป็นเงินเท่าไหร่</pre></div><div class="pbox"><pre>ปีนี้คู่แข่งของเราขายได้เท่าไหร่</pre></div><p class="hint"><b>ข้อ 3 สำคัญที่สุด:</b> ควรตอบว่าไม่มีข้อมูลในเอกสาร — ถ้ามันตอบตัวเลขมา ให้ดูว่ามีเลขอ้างอิงไหม ไม่มี = ห้ามเชื่อ</p><textarea class="jot" data-k="v2_1" placeholder="ยอดขายที่มันตอบ / ข้อ 3 มันตอบว่าอะไร"></textarea></div><div class="card"><div class="chead"><span class="num">3</span><h3>สไลด์ที่ดี เริ่มจาก 3 คำถาม</h3></div><table>
+<tr><th style="width:30%">คำถาม</th><th>ตัวอย่างวันนี้</th></tr>
+<tr><td><b>1. ใครฟัง</b></td><td>คุณกมลวรรณ (กรรมการผู้จัดการ) + หัวหน้าฝ่าย ในประชุมสิ้นปี</td></tr>
+<tr><td><b>2. ฟังจบ อยากให้เขาทำอะไร</b></td><td>อนุมัติโครงการ A B C งบรวม 3.38 ล้านบาท</td></tr>
+<tr><td><b>3. ข้อความหลัก 3 ข้อ</b></td><td>ถ้าเขาจำได้แค่ 3 อย่าง อยากให้จำอะไร</td></tr></table>
+<p class="hint">ตอบ 3 ข้อนี้ไม่ได้ AI ก็ช่วยไม่ได้ — มันจะทำสไลด์สวยที่ไม่มีใครตัดสินใจอะไรได้</p></div><div class="card"><div class="chead"><span class="num">4</span><h3>Studio → Slide deck → วาง prompt แล้วกดสร้าง</h3><span class="badge b-nb">NotebookLM</span><span class="badge b-g">ฟรีทำได้</span></div><ol>
+<li>ช่องขวา Studio → <b>Slide deck</b></li>
+<li>Format: <b>Presenter slides</b> · Choose language: <b>ไทย</b> · Length: <b>Default</b></li>
+<li>วาง prompt ข้างล่างในช่อง <i>Describe the slide deck that you want to create</i> → กด <b>Generate now</b></li></ol><div class="pbox"><pre>สไลด์นี้สำหรับ: คุณกมลวรรณ กรรมการผู้จัดการ และหัวหน้าฝ่าย ในประชุมผู้บริหารสิ้นปี
+ฟังจบอยากให้: อนุมัติโครงการ A, B, C ของปี 2570 (งบรวม 3.38 ล้านบาท)
+ข้อความหลัก 3 ข้อ:
+1) ปีนี้คาดว่าปิดที่ 54.9 ล้านบาท = 98% ของเป้า
+2) กระเช้าองค์กรคือดาวรุ่ง โต 35%
+3) ถ้าจะโตต่อ ต้องแก้เรื่องเครื่องอบและการแพ็กกระเช้าก่อน
+กติกา: ภาษาไทยทั้งหมด · 1 สไลด์ 1 ประเด็น · ตัวหนังสือน้อย ตัวเลขใหญ่ · ใช้ตัวเลขจากเอกสารเท่านั้น ห้ามแต่งเพิ่ม · สไลด์สุดท้ายคือ สิ่งที่ขออนุมัติ · โทนสีแดงอิฐกับทอง</pre></div><p class="hint">ใช้เวลาราว 6 นาที — กดแล้วปล่อยไว้ ไปทำช่วง 2 ระหว่างรอ</p><div class="stuck"><b>ถ้าติด ทำแบบนี้</b><ul><li>ลืมเลือกภาษาไทย ได้สไลด์ภาษาอังกฤษ → สร้างใหม่ ครั้งหน้าเช็กช่อง Choose language ก่อนกด</li><li>ขึ้นว่าโควตาเต็ม → กด <b>Generate later</b> (ไม่กินโควตา แต่รอนานเป็นชั่วโมง) แล้วดูจอเพื่อนไปก่อน</li><li>รอเกิน 10 นาทีแล้วยังไม่เสร็จ → รีเฟรชหน้า ชิ้นงานมักเสร็จแล้วแต่หน้าจอไม่อัปเดต</li></ul></div></div><div class="card"><div class="chead"><span class="num">5</span><h3>ตรวจ 3 อย่างก่อนเชื่อ</h3><span class="badge b-nb">NotebookLM</span><span class="badge b-g">ฟรีทำได้</span></div><ol>
+<li><b>ตัวสะกดไทย</b> — กดขยายดูทีละหน้า สไลด์เป็นรูปภาพที่ AI วาด ตัวหนังสือเพี้ยนได้</li>
+<li><b>ตัวเลขตรงเอกสาร</b> — เทียบกับ NB1 อย่างน้อย 3 ตัวเลข</li>
+<li><b>ชื่อ · ตำแหน่ง · คำที่ AI เติมเอง</b> — มีคำไหนที่เอกสารไม่ได้พูด</li></ol>
+<p class="hint"><b>ตัวอย่างจริงจากเครื่องผู้สอน:</b> สไลด์เขียน "ได้ลูกค้าใหม่<b>รายใหญ่</b> 3 ราย" แต่รายงานเขียนแค่ "ลูกค้าใหม่ 3 ราย"</p><textarea class="jot" data-k="v2_2" placeholder="จุดที่ AI เติมเองหรือผิด ในสไลด์ของคุณ"></textarea></div><div class="card"><div class="chead"><span class="num">6</span><h3>สั่งแก้ทีละสไลด์</h3><span class="badge b-nb">NotebookLM</span><span class="badge b-g">ฟรีทำได้</span></div><ol>
+<li>กดไอคอน <b>ดินสอ ✏️</b> เหนือสไลด์ → เลือกสไลด์ที่จะแก้</li>
+<li>พิมพ์ในช่อง <b>Change slide</b> — บอกคำเดิม คำใหม่ และบอกว่าส่วนอื่นไม่ต้องเปลี่ยน</li>
+<li>แก้ได้หลายหน้า แล้วกด <b>Generate revised deck</b> · ได้ชุดใหม่ต่อท้าย ชุดเดิมยังอยู่</li></ol><div class="pbox"><pre>แก้คำว่า &quot;ได้ลูกค้าใหม่รายใหญ่ 3 ราย&quot; เป็น &quot;ได้ลูกค้าใหม่ 3 ราย&quot; ให้ตรงกับรายงาน
+ส่วนอื่นของสไลด์ไม่ต้องเปลี่ยน</pre></div><div class="pbox"><pre>ตัดข้อความในสไลด์นี้ให้เหลือไม่เกิน 3 บรรทัด และทำตัวเลขหลักให้ใหญ่ขึ้น</pre></div></div><div class="card"><div class="chead"><span class="num">7</span><h3>ดาวน์โหลด + ซ้อมตอบคำถามก่อนเข้าห้องประชุม</h3><span class="badge b-nb">NotebookLM</span><span class="badge b-g">ฟรีทำได้</span></div><ul>
+<li>กด <b>⋮</b> มุมขวาบนของสไลด์ → <b>Download PowerPoint (.pptx)</b> เปิดในห้องประชุม หรือ <b>Download PDF</b> ส่งไลน์/อีเมล</li>
+<li>หรือกด <b>▶ Present</b> ฉายจากเว็บได้เลย</li></ul>
+<p>แล้ววาง prompt นี้ในช่องแชตของสมุดเดิม — มันจะถามจากเอกสารจริง พร้อมเฉลยที่มีที่มา</p><div class="pbox"><pre>สมมติว่าคุณคือคุณกมลวรรณ กรรมการผู้จัดการที่ละเอียดเรื่องตัวเลขมาก
+จากเอกสารทั้งหมดในสมุดนี้ ถามคำถามที่ยากที่สุด 3 ข้อ
+ที่ผมน่าจะโดนถามตอนเสนอขออนุมัติโครงการ A B C
+แต่ละข้อ เฉลยด้วยว่าควรตอบยังไง โดยอ้างตัวเลขจากเอกสาร</pre></div><p class="hint">ไฟล์ PPTX แต่ละหน้าเป็นรูปภาพ แก้ตัวหนังสือตรง ๆ ไม่ได้ — ทางที่ง่ายที่สุดคือสั่งแก้ใน NotebookLM</p></div><div class="note"><b>ห้าม</b> ใส่ไฟล์ลับของบริษัทหรือข้อมูลลูกค้าจริงลงในบัญชี Google ส่วนตัว — เปลี่ยนชื่อ/ตัวเลขสำคัญก่อน หรือใช้บัญชีที่บริษัทอนุญาต</div></section><section id="cg"><div class="shead"><span class="tag">ช่วง 2</span><h2>ระหว่างรอ: ChatGPT เปลี่ยนอะไร</h2><span class=time>12 นาที</span></div><div class="card"><div class="chead"><span class="num">1</span><h3>AI จำอะไรเกี่ยวกับคุณไว้บ้าง</h3><span class="badge b-g">ฟรีทำได้</span></div><p>เปิด <b>chatgpt.com</b> → แชตใหม่ → วาง prompt</p><div class="pbox"><pre>จากที่เราเคยคุยกันมา คุณรู้อะไรเกี่ยวกับผมบ้าง
+แยกเป็น 3 หัวข้อ: งานที่ผมทำ / สไตล์คำตอบที่ผมชอบ / เรื่องที่คุณยังไม่แน่ใจ
+ตอบสั้น ๆ หัวข้อละไม่เกิน 3 บรรทัด</pre></div>
+<p class="hint">ข้อมูลผิดหรือเก่า → <b>Settings → Personalization</b> → ดู <b>Memory summary</b> และแก้ <b>custom instructions</b> ·
+เรื่องที่ไม่อยากให้จำ ใช้ <b>Temporary chat</b> (มุมขวาบน)</p><textarea class="jot" data-k="v2_3" placeholder="มันจำอะไรผิด / ที่อยากแก้"></textarea></div><div class="card"><h3>ของใหม่ที่ควรรู้ (ข้อมูล ณ พ.ย. 2569)</h3><table>
+<tr><th style="width:24%">อะไร</th><th>ทำอะไรได้</th><th style="width:30%">แพลนฟรี</th></tr>
+<tr><td><b>โหมด Work</b></td><td>ปุ่ม Chat | Work เหนือช่องพิมพ์ — รับงานแล้วลงมือหลายขั้นจนได้ไฟล์ Excel Word PowerPoint</td><td>ได้จำกัด ต้องใช้แอปบนคอม</td></tr>
+<tr><td><b>โมเดลใหม่ GPT-6</b></td><td>คิดลึกขึ้น ทำงานยาวได้ดีขึ้น</td><td>ฟรีใช้ GPT-5.6 Luna — พอสำหรับงานวันนี้</td></tr>
+<tr><td><b>สร้างภาพรุ่นใหม่</b></td><td>ตัวหนังสือไทยในภาพแม่นขึ้น · ทำภาพเคลื่อนไหว (GIF) ได้</td><td>ได้ แต่จำกัดจำนวน</td></tr>
+<tr><td><b>เสียงแบบใหม่</b></td><td>คุยโต้ตอบเหมือนคน พูดแทรกกันได้</td><td>ได้ (รุ่นเล็ก) · โหมดเสียงเก่าเลิก 11 ธ.ค.</td></tr>
+<tr><td><b>NotebookLM</b></td><td>เปลี่ยนชื่อเป็น Gemini Notebook · ทำสไลด์ แบบทดสอบ อินโฟกราฟิก</td><td>ฟรี (มีลายน้ำบนชิ้นงาน)</td></tr>
+<tr><td><b>สร้าง GPTs เอง</b></td><td>ปิดแล้วสำหรับบัญชีส่วนตัว</td><td>—</td></tr></table>
+<p class="hint">ชื่อเมนูเปลี่ยนบ่อย ถ้าหาไม่เจอ ให้ถามผู้สอนหรือถาม ChatGPT เองว่า "ปุ่ม ... อยู่ตรงไหน"</p></div></section><section id="formula"><div class="shead"><span class="tag">ช่วง 3</span><h2>สูตรสั่งงานอัปเกรด</h2><span class=time>20 นาที</span></div><div class="card"><h3>R · C · C · F ยังใช้ได้เหมือนเดิม</h3><table>
+<tr><th style="width:18%">ช่อง</th><th style="width:38%">ถามตัวเองว่า</th><th>ตัวอย่าง</th></tr>
+<tr><td><b>Role</b></td><td>งานนี้ถ้าจ้างคนมาทำ จะจ้างตำแหน่งอะไร</td><td>"คุณคือเจ้าหน้าที่ฝ่ายบุคคลของโรงงานขนม"</td></tr>
+<tr><td><b>Context</b></td><td>ถ้าเล่าให้คนใหม่ฟัง ต้องเล่าอะไรบ้าง</td><td>รับพนักงานชั่วคราว 4 คน ช่วงพีค 7–29 ธ.ค.</td></tr>
+<tr><td><b>Constraint</b></td><td>ห้ามอะไร ต้องมีอะไร</td><td>ค่าแรง 400 บาท · ห้ามสัญญาเรื่องที่พัก</td></tr>
+<tr><td><b>Format</b></td><td>อยากได้หน้าตาแบบไหน ยาวเท่าไหร่</td><td>โพสต์ไลน์ ไม่เกิน 8 บรรทัด</td></tr></table></div><div class="card"><div class="chead"><span class="num">+</span><h3>2 ประโยคทอง ปิดท้ายทุกงานที่สำคัญ</h3></div><p><b>ประโยคที่ 1</b> (ทวนจากรอบที่แล้ว) — ใช้ตอนที่ยังไม่รู้ว่าต้องบอกอะไรมันบ้าง</p><div class="pbox"><pre>ก่อนเริ่ม ถามผมก่อน 3 ข้อที่จำเป็นที่สุด แล้วรอคำตอบ</pre></div><p><b>ประโยคที่ 2</b> (ใหม่) — บอกเกณฑ์ผ่าน 2–4 ข้อที่ตรวจได้ เช่น ไม่เกิน 8 บรรทัด มีวันที่ ไม่มีคำว่า ... (ไม่ใช่ "ให้ดี ให้สวย")</p><div class="pbox"><pre>ก่อนส่ง ตรวจงานตัวเองตามเกณฑ์นี้ [เกณฑ์] แล้วบอกจุดที่ไม่แน่ใจ</pre></div></div><div class="card"><div class="chead"><span class="num">ดู</span><h3>ตัวอย่าง: ประโยคที่ 2 ทำงานยังไง</h3><span class="badge b-b">ดูผู้สอนทำ</span></div><div class="pbox"><pre>คุณคือเจ้าหน้าที่ฝ่ายบุคคลของโรงงานขนมไทยและกระเช้าของขวัญ ที่สามพราน นครปฐม
+ช่วยเขียนประกาศรับสมัครพนักงานชั่วคราวแพ็กกระเช้าเพิ่ม 4 คน
+ทำงาน 7–29 ธ.ค. 2569 กะเช้า 07:00–16:00 ค่าแรงวันละ 400 บาท มีอาหารกลางวันฟรี
+สนใจติดต่อคุณอรอุมา ฝ่ายบุคคล โทร 034-000-100 ต่อ 105
+ใช้โพสต์ในกลุ่มไลน์หางานแถวสามพราน
+
+ก่อนส่ง ตรวจงานตัวเองตามเกณฑ์นี้ แล้วบอกว่าผ่านกี่ข้อ ข้อไหนไม่แน่ใจ
+- อ่านจบใน 15 วินาที (ไม่เกิน 8 บรรทัด)
+- มีครบ: งานอะไร วันที่ เวลา ค่าแรง ติดต่อใคร
+- ภาษาเป็นกันเอง ไม่ใช้ศัพท์ทางการ
+- ไม่สัญญาสิ่งที่ผมไม่ได้บอก (เช่น ที่พัก รถรับส่ง)</pre></div><p class="hint">ดูท้ายคำตอบ: มันรายงานว่าผ่านกี่ข้อ และบอกจุดที่ไม่แน่ใจ — จุดที่ไม่แน่ใจ = สิ่งที่คุณลืมบอก เติมแล้วสั่งใหม่</p></div><div class="card"><div class="chead"><span class="num">ตาคุณ</span><h3>เขียนงานจริงของคุณ 1 อย่าง ด้วยสูตรใหม่</h3><span class="badge b-g">ฟรีทำได้</span></div><p>คัดลอก → เติม [วงเล็บ] ด้วยงานจริง → ตอบคำถาม 3 ข้อที่มันถามกลับ → ดูว่ามันตรวจตัวเองผ่านไหม</p><div class="pbox"><pre>คุณคือ [ถ้าจ้างคนมาทำงานนี้ จะจ้างตำแหน่งอะไร]
+งานที่อยากให้ทำ: [งานอะไร เอาไปใช้ทำอะไร ใครอ่าน]
+ข้อมูลที่มี: [วางข้อมูลหรือรายละเอียด]
+ห้าม / ต้องมี: [...]
+หน้าตาผลลัพธ์: [ตาราง / อีเมล / ข้อ ๆ · ยาวเท่าไหร่]
+
+ก่อนเริ่ม ถามผมก่อน 3 ข้อที่จำเป็นที่สุด แล้วรอคำตอบ
+ก่อนส่ง ตรวจงานตัวเองตามเกณฑ์นี้ [เกณฑ์ 2–3 ข้อ] แล้วบอกจุดที่ไม่แน่ใจ</pre></div><div class="stuck"><b>ถ้าติด ทำแบบนี้</b><ul><li>คิดไม่ออกว่าจะใช้กับงานอะไร → ถามตัวเองว่า <b>เมื่อวานทำอะไรนานที่สุด</b></li><li>งานจริงมีข้อมูลลับ → เปลี่ยนชื่อคน ชื่อลูกค้า และตัวเลขสำคัญเป็นสมมติก่อน</li></ul></div><textarea class="jot" data-k="v2_4" placeholder="งานที่เลือก / ประหยัดเวลาได้ประมาณกี่นาที"></textarea></div></section><section id="lab"><div class="shead"><span class="tag">ช่วง 4</span><h2>Lab ช่วงพีคสิ้นปี</h2><span class=time>55 นาที</span></div><p class="lead">4 งานจริงของบริษัทหอมกรุ่น ทุกแล็บปิดท้ายด้วยประโยคทองข้อ 2 · ไฟล์ .txt .md เปิดด้วย Notepad แล้วคัดลอกเนื้อหามาวางแทนข้อความ [วาง...]</p><div class="card"><div class="chead"><span class="num">UC1</span><h3>แชตไลน์รก ๆ → ตารางออเดอร์ + ข้อความตามลูกค้า</h3><span class="badge b-g">ฟรีทำได้</span><span class="time">12 นาที</span></div><ol><li>เปิด <span class="file">ข้อมูลบริษัท.md</span> ด้วย Notepad → คัดลอกทั้งหมดมาวางแทน <i>[วางเนื้อหาไฟล์ ข้อมูลบริษัท.md]</i></li>
+<li>เปิด <span class="file">UC1-แชตไลน์-ออเดอร์กระเช้า.txt</span> → คัดลอกมาวางแทน <i>[วางเนื้อหาไฟล์ UC1...]</i></li>
+<li>ส่งทั้งหมดในแชตเดียว</li></ol><div class="pbox"><pre>คุณคือธุรการขายของบริษัทขนมและกระเช้าของขวัญ ข้อมูลบริษัทและเงื่อนไขการสั่งอยู่ข้างล่าง
+[วางเนื้อหาไฟล์ ข้อมูลบริษัท.md]
+===
+นี่คือแชตไลน์กลุ่มทีมขาย 4 วันล่าสุด
+[วางเนื้อหาไฟล์ UC1-แชตไลน์-ออเดอร์กระเช้า.txt]
+===
+ช่วยสรุปเป็นตารางออเดอร์กระเช้า คอลัมน์:
+ลูกค้า | รุ่น | จำนวน | วันส่ง | ที่อยู่ส่ง | ผู้ติดต่อ | เบอร์ | สถานะ
+
+กติกา
+- ถ้ามีการแก้จำนวนทีหลัง ใช้ตัวเลขล่าสุด
+- ออเดอร์ที่โพสต์ซ้ำ ให้นับครั้งเดียว
+- สถานะใช้ 3 แบบ: พร้อมส่ง / ข้อมูลไม่ครบ / ติดเงื่อนไข
+- ช่องไหนไม่มีข้อมูล เขียนว่า &quot;ไม่ระบุ&quot; ห้ามเดา
+
+ก่อนส่ง ตรวจตัวเอง: ทุกออเดอร์ผ่านเงื่อนไขในข้อมูลบริษัทไหม
+(ขั้นต่ำ 20 ใบ · วันหยุด · ไฟล์โลโก้ · ราคาพิเศษ)
+ใต้ตาราง สรุปว่ามีกี่ออเดอร์ที่ต้องตามเรื่อง และต้องตามเรื่องอะไร</pre></div><p class="hint">ส่วนที่บอกว่า<b>ต้องตามเรื่องอะไร</b> คือของที่ใช้งานจริง — นี่คืองานที่แพรต้องนั่งไล่เองทุกเย็น</p><p>ต่อในแชตเดิม:</p><div class="pbox"><pre>ต่อจากตารางนี้ ร่างข้อความไลน์สั้น ๆ ถึงลูกค้าทุกรายที่สถานะ &quot;ข้อมูลไม่ครบ&quot; หรือ &quot;ติดเงื่อนไข&quot;
+รายละ 1 ข้อความ ไม่เกิน 4 บรรทัด สุภาพ บอกตรง ๆ ว่าขาดอะไร และต้องตอบกลับภายในวันไหน
+ส่วนคุณต้อม ให้เสนอทางเลือกที่ทำได้จริงตามเงื่อนไขบริษัท</pre></div><div class="stuck"><b>ถ้าติด ทำแบบนี้</b><ul><li>ตารางไม่ครบทุกออเดอร์ → พิมพ์ว่า "นับออเดอร์ในแชตให้ดูก่อนว่ามีกี่รายการ แล้วทำตารางใหม่ให้ครบ"</li><li>ข้อความลูกค้าเสนอทางเลือกที่บริษัทไม่มี → ตรวจกับเงื่อนไขใน ข้อมูลบริษัท.md แล้วสั่งแก้</li></ul></div><textarea class="jot" data-k="v2_5" placeholder="มีกี่ออเดอร์ที่ต้องตามเรื่อง / มันจับซ้ำได้ไหม"></textarea></div><div class="card"><div class="chead"><span class="num">UC2</span><h3>Excel ยอดขาย 11 เดือน → ตรวจไฟล์ → แก้ → insight</h3><span class="badge b-g">ฟรีทำได้</span><span class="time">18 นาที</span></div><p>ไฟล์เดียวของวันที่ต้อง<b>อัปโหลด</b>: กด <b>+</b> → <b>Add photos &amp; files</b> → เลือก <span class="file">UC2-ยอดขาย-มค-พย-2569.xlsx</span></p>
+<p><b>ก. ตรวจไฟล์ก่อน อย่าเพิ่งให้วิเคราะห์</b></p><div class="pbox"><pre>ไฟล์ที่แนบคือยอดขาย ม.ค.–พ.ย. 2569 ของบริษัทขนมและกระเช้าของขวัญ
+ก่อนวิเคราะห์ ตรวจไฟล์ก่อนว่ามีปัญหาอะไรบ้าง เช่น ชื่อเขียนไม่ตรงกัน วันที่หลายแบบ
+แถวซ้ำ แถวว่าง ตัวเลขผิดปกติ ยอดรวมไม่ตรงกับจำนวน × ราคา
+
+ตอบเป็นตาราง: ปัญหา | กี่แถว | ตัวอย่าง | เสนอว่าจะแก้ยังไง
+ยอดติดลบคือรายการรับคืนสินค้า ไม่ใช่ข้อผิดพลาด
+ยังไม่ต้องแก้ จนกว่าผมจะตอบตกลง</pre></div><p><b>ข. แก้ แล้ววิเคราะห์</b></p><div class="pbox"><pre>แก้ตามที่เสนอได้เลย แล้วบอกว่าแก้อะไรไปกี่แถว
+จากนั้นวิเคราะห์ให้หน่อย
+1. ยอดขายรายเดือน พร้อมกราฟเส้น
+2. ยอดขายแยก 4 ช่องทาง
+3. insight 3 ข้อที่ผู้บริหารควรรู้ ข้อละไม่เกิน 2 บรรทัด มีตัวเลขประกอบ</pre></div><p><b>ค. จับผิดตัวเลข — ขั้นสำคัญที่สุด</b></p><div class="pbox"><pre>รายงานผลงานปีของบริษัท (ไฟล์ NB1 ที่ใช้ทำสไลด์เมื่อเช้า) บอกว่า
+- ยอดขาย ต.ค. 2569 = 5.95 ล้านบาท
+- ยอดรวม ม.ค.–พ.ย. 2569 = 45.29 ล้านบาท
+ตัวเลขที่คุณคิดได้ตรงกับนี้ไหม ถ้าไม่ตรง ต่างกันเท่าไหร่ และต่างเพราะแถวไหน
+บอกเลขที่บิลที่เป็นต้นเหตุ ห้ามเดา ถ้าหาไม่เจอให้บอกว่าหาไม่เจอ</pre></div><p class="hint">ทำต่อด้วยมือ 1 นาที: เปิดไฟล์ Excel → กรองบิลที่มันบอก → ดูด้วยตาเองว่าจริงไหม · AI วิเคราะห์เร็วมาก แต่<b>ถ้าข้อมูลต้นทางผิด คำตอบก็ผิดอย่างมั่นใจ</b></p><div class="stuck"><b>ถ้าติด ทำแบบนี้</b><ul><li>อัปไฟล์ไม่ได้ / โควตาเต็ม → จับคู่ดูจอเพื่อน หรือข้ามไป UC3 แล้วกลับมาทีหลัง</li><li>มันแก้ไฟล์ทั้งที่ยังไม่สั่ง → พิมพ์ว่า "หยุดก่อน ยังไม่ต้องแก้ ขอแค่รายการปัญหา"</li><li>กราฟไม่ขึ้น → พิมพ์ว่า "วาดกราฟเส้นยอดขายรายเดือนให้ดูในแชต"</li></ul></div><textarea class="jot" data-k="v2_6" placeholder="ตัวเลขที่ผิดคือบิลไหน / ต่างจากรายงานเท่าไหร่"></textarea></div><div class="card"><div class="chead"><span class="num">UC3</span><h3>ลูกค้าร้องเรียนกระเช้าเสียหาย → 3 ชิ้นงานจากเรื่องเดียว</h3><span class="badge b-g">ฟรีทำได้</span><span class="time">12 นาที</span></div><ol><li>คัดลอก <span class="file">ข้อมูลบริษัท.md</span> มาวาง</li><li>คัดลอก <span class="file">UC3-อีเมลร้องเรียน-กระเช้าเสียหาย.txt</span> มาวาง</li><li>วาง prompt ส่วนที่เหลือ กด Enter</li></ol><div class="pbox"><pre>คุณคือธุรการขายของบริษัทนี้ ข้อมูลบริษัทและโทนการสื่อสารอยู่ข้างล่าง
+[วางเนื้อหาไฟล์ ข้อมูลบริษัท.md]
+===
+[วางเนื้อหาไฟล์ UC3-อีเมลร้องเรียน-กระเช้าเสียหาย.txt]
+===
+ช่วยเขียน 3 ชิ้นจากเรื่องเดียวกันนี้
+1. อีเมลตอบคุณศิริพร: ขอโทษตรง ๆ บอกสิ่งที่เกิดขึ้นโดยไม่โทษพนักงาน
+   เสนอ 2 ทางเลือกตามที่หัวหน้าอนุมัติ ระบุวันเวลาชัดเจน และบอกว่าเราจะแก้อะไรไม่ให้เกิดซ้ำ
+2. สรุปถึงคุณกมลวรรณ (กรรมการผู้จัดการ) ไม่เกินครึ่งหน้า:
+   เกิดอะไรขึ้น ต้นเหตุจริง ค่าเสียหาย และข้อเสนอป้องกัน
+3. ข้อความไลน์ถึงคุณธนากร: เช็กลิสต์ส่งของทดแทนเช้าวันพฤหัส ไม่เกิน 6 ข้อ
+
+ก่อนส่ง ตรวจตัวเอง: ห้ามมีคำว่า &quot;โดยเร็วที่สุด&quot; · ทุกชิ้นมีวันที่และเวลาจริง ·
+ชิ้นที่ 1 ไม่โทษพนักงานชั่วคราว</pre></div><p class="hint">ตรวจเอง: อีเมลถึงลูกค้าต้อง<b>ไม่โทษพนักงานชั่วคราว</b> · มีทางเลือก 2 ข้อ · มีวันเวลาจริง</p><p>แก้ต่อ — ไม่ต้องเริ่มใหม่ สั่งแก้ทีละเรื่อง และบอกว่าอะไรต้องคงไว้:</p><div class="pbox"><pre>อีเมลข้อ 1 ยาวไป ทำให้สั้นลงประมาณ 30% แต่ต้องคงทางเลือกทั้ง 2 ข้อ และวันเวลาไว้ครบ
+แล้วเขียนหัวเรื่องอีเมลให้ 3 แบบ ให้ผมเลือก</pre></div><textarea class="jot" data-k="v2_7" placeholder="ชิ้นไหนใช้ได้เลย / ชิ้นไหนต้องแก้"></textarea></div><div class="card"><div class="chead"><span class="num">UC4</span><h3>โปสเตอร์แจ้งวันหยุดปีใหม่ ตัวหนังสือไทยในภาพ</h3><span class="badge b-y">ฟรีอาจติดลิมิต</span><span class="time">10 นาที</span></div><p>วาง prompt ในแชตใหม่ (ข้อความทั้งหมดอยู่ใน prompt แล้ว ไม่ต้องเปิดไฟล์)</p><div class="pbox"><pre>สร้างภาพโปสเตอร์สี่เหลี่ยมจัตุรัส แจ้งวันหยุดปีใหม่ของแบรนด์ขนมไทยและกระเช้าของขวัญ &quot;หอมกรุ่น&quot;
+ข้อความบนภาพ ต้องสะกดตามนี้ทุกตัว ห้ามมีข้อความอื่น:
+แจ้งวันหยุดปีใหม่ 2570
+สั่งกระเช้าได้ถึง อังคาร 22 ธ.ค. 69
+ส่งของวันสุดท้าย อังคาร 29 ธ.ค. 69
+หยุดทำการ 30 ธ.ค. 69 – 3 ม.ค. 70
+เปิดทำการ จันทร์ 4 ม.ค. 70
+หอมกรุ่น
+
+หน้าตา: พื้นครีม สีแดงอิฐกับทอง อบอุ่น เป็นมงคล ไม่รก
+มีภาพกระเช้าขนมไทยเล็ก ๆ ประกอบ วันที่ต้องใหญ่และเด่นที่สุด ไม่มีซานตาคลอส</pre></div><p>ขั้นต่อไป — ตรวจตัวสะกดในภาพ:</p><div class="pbox"><pre>ตรวจตัวสะกดทุกคำในภาพ เทียบกับข้อความที่ผมให้ไป
+บอกคำที่ผิดเป็นข้อ ๆ แล้วแก้เฉพาะคำที่ผิด ส่วนอื่นของภาพไม่ต้องเปลี่ยน</pre></div><div class="stuck"><b>ถ้าติด ทำแบบนี้</b><ul><li>โควตาสร้างภาพหมด → ดูของผู้สอนบนจอ แล้วเก็บ prompt ไว้ลองพรุ่งนี้</li><li>ตัวหนังสือในภาพผิด 1–2 คำ → สั่งแก้เฉพาะคำนั้น ไม่ต้องสร้างใหม่ทั้งภาพ</li></ul></div><textarea class="jot" data-k="v2_8" placeholder="คำที่ผิดในภาพ"></textarea></div></section><section id="work"><div class="shead"><span class="tag">ช่วง 5</span><h2>มอบงานให้ AI ทำทั้งชิ้น</h2><span class=time>12 นาที</span></div><div class="card"><table><tr><th></th><th>Chat · ถาม</th><th>Work · มอบงาน</th></tr>
+<tr><td><b>คุณทำอะไร</b></td><td>ถามทีละเรื่อง</td><td>มอบงาน + ไฟล์/โฟลเดอร์</td></tr>
+<tr><td><b>มันทำอะไร</b></td><td>ตอบข้อความกลับมา</td><td>วางแผน ลงมือหลายขั้น ตรวจเอง</td></tr>
+<tr><td><b>ได้อะไร</b></td><td>ข้อความ ที่คุณก๊อปไปทำต่อ</td><td>ไฟล์ Excel Word PowerPoint ที่เสร็จแล้ว</td></tr></table>
+<p class="hint">อยู่ที่ปุ่ม <b>Chat | Work</b> เหนือช่องพิมพ์ · แพลนฟรีต้องใช้<b>แอป ChatGPT บนคอม</b> และใช้ได้จำกัด · Plus มีลิมิตทุก 5 ชั่วโมง</p></div><div class="card"><div class="chead"><span class="num">ดู</span><h3>เดโม: โฟลเดอร์ใบเสร็จ 8 ใบ → Excel + บันทึกถึง MD</h3><span class="badge b-b">ดูผู้สอนทำ</span></div><p>ผู้สอนสลับเป็นโหมด Work → เลือกโฟลเดอร์ <span class="file">W-ใบเสร็จงานเลี้ยงปีใหม่</span> → วาง prompt → อ่านแผนก่อน → อนุญาตทีละขั้น</p><div class="pbox"><pre>ในโฟลเดอร์นี้มีใบเสร็จค่าใช้จ่ายงานเลี้ยงปีใหม่พนักงาน 8 ไฟล์ และไฟล์งบที่อนุมัติ
+1. อ่านใบเสร็จทุกใบ ทำเป็นไฟล์ Excel ชื่อ สรุปค่าใช้จ่ายงานปีใหม่.xlsx
+   คอลัมน์: ไฟล์ | วันที่ | ร้าน | เลขที่ใบเสร็จ | รายการ | จำนวนเงิน | หมวด | มีเลขผู้เสียภาษีไหม
+2. ชีตที่ 2 เทียบยอดจ่ายจริงกับงบแต่ละหมวด ใส่สีแดงหมวดที่เกินงบ
+3. เขียนบันทึกถึงคุณกมลวรรณเป็นไฟล์ Word ไม่เกิน 1 หน้า:
+   จ่ายไปเท่าไหร่ ยังค้างจ่ายเท่าไหร่ หมวดไหนเกินงบ และเรื่องที่ฝ่ายบัญชีต้องรู้
+
+ก่อนลงมือ บอกแผนก่อนว่าจะทำอะไรบ้าง
+ก่อนส่ง ตรวจว่ามีใบเสร็จซ้ำ หรือใบที่ใช้เบิกไม่ได้ไหม ถ้ามีให้แยกออกมาและบอกเหตุผล</pre></div><textarea class="jot" data-k="v2_9" placeholder="มันจับใบเสร็จซ้ำได้ไหม / ใบไหนใช้เบิกไม่ได้"></textarea></div><div class="win"><b>3 อย่างที่ต้องทำ ทุกครั้งที่ให้ AI ลงมือเอง</b><ol>
+<li><b>ให้เข้าเฉพาะโฟลเดอร์งาน</b> — ไม่ใช่ทั้งเครื่อง ไม่ใช่โฟลเดอร์ที่มีไฟล์ลับปนอยู่</li>
+<li><b>อ่านแผนก่อนกดอนุญาต</b> — มันจะบอกว่าจะทำอะไร ถ้าไม่เข้าใจ อย่ากด</li>
+<li><b>ให้มัน "ร่าง" ไม่ใช่ "ส่ง"</b> — อีเมล ไลน์ คำสั่งซื้อ คนกดส่งต้องเป็นคุณเสมอ</li></ol></div></section><section id="extra"><div class="shead"><span class="tag">โมดูลเสริม</span><h2>เลือกทำ 3 จาก 4</h2><span class=time>50 นาที</span></div><p class="lead">เฉพาะรอบบ่าย — รอบเช้าเก็บไว้ลองเองที่บ้านได้ ทุกโมดูลทำได้บนแพลนฟรี</p><div class="card"><div class="chead"><span class="num">E1</span><h3>NotebookLM ภาค 2 · คู่มือ 5 หน้า → ถามตอบ + แบบทดสอบ</h3><span class="badge b-nb">NotebookLM</span><span class="badge b-g">ฟรีทำได้</span><span class="pm">เฉพาะรอบบ่าย</span></div><p>สร้างสมุดใหม่ ใส่ <span class="file">E1-คู่มือพนักงานชั่วคราว-ช่วงพีค.pdf</span> แล้วถาม 3 ข้อ — กดเลขอ้างอิงดูว่ามันรวมคำตอบจากหลายหน้า</p><div class="pbox"><pre>ถ้าผมมาสาย 20 นาที 2 ครั้ง และสาย 10 นาทีอีก 1 ครั้ง ในรอบ 15 วัน
+จะโดนหักเงินเท่าไหร่ และยังได้เบี้ยขยันไหม</pre></div><div class="pbox"><pre>วันที่ 30–31 ธ.ค. ต้องมาทำงานไหม แล้วได้ค่าแรงสองวันนั้นหรือเปล่า</pre></div><div class="pbox"><pre>ถ้าต้องแพ็กกระเช้ามั่งมี 90 ใบคนเดียว ต้องใช้เวลากี่ชั่วโมง
+และต้องตรวจของในกระเช้ากี่อย่างต่อใบ</pre></div><p>แล้วไปที่ Studio → <b>Quiz</b> (ตั้งภาษาไทย) วาง prompt นี้:</p><div class="pbox"><pre>แบบทดสอบสำหรับพนักงานชั่วคราววันแรก 10 ข้อ ภาษาไทย
+เน้นเรื่องที่พลาดแล้วเสียหายจริง: ข้อห้ามในไลน์ผลิต มาตรฐานการแพ็กกระเช้า การวางซ้อน และความปลอดภัย
+ข้อสอบต้องเป็นสถานการณ์จริง ไม่ใช่ถามท่องจำตัวเลข</pre></div><p>Studio → <b>Infographic</b> วาง prompt นี้ · Mind Map กดได้เลยไม่ต้องตั้งค่า</p><div class="pbox"><pre>อินโฟกราฟิกหน้าเดียวสำหรับติดบอร์ดหน้าไลน์แพ็ก ภาษาไทย
+หัวข้อ: 7 ขั้นแพ็กกระเช้าแบบใหม่ + ห้ามซ้อนเกิน 3 ชั้น
+ตัวหนังสือน้อย ใช้ไอคอน คนอ่านยืนดูแล้วเข้าใจใน 10 วินาที</pre></div><textarea class="jot" data-k="v2_10" placeholder="คำตอบข้อ 1 / ใช้กับคู่มือไหนในงานจริงได้"></textarea></div><div class="card"><div class="chead"><span class="num">E2</span><h3>ผู้ช่วย Excel · ไม่ต้องอัปไฟล์</h3><span class="badge b-g">ฟรีทำได้</span><span class="pm">เฉพาะรอบบ่าย</span></div><p>บอกโครงสร้างคอลัมน์ก็พอ ข้อมูลจริงไม่ต้องออกจากเครื่องคุณ → เอาสูตรไปวางในไฟล์ UC2 ใน Excel</p><div class="pbox"><pre>ผมมีตาราง Excel ยอดขาย โครงสร้างแบบนี้
+A=วันที่  B=เลขที่บิล  C=ลูกค้า  D=ช่องทาง  E=กลุ่มสินค้า  F=สินค้า  G=จำนวน  H=ราคา/หน่วย  I=ยอดรวม
+ข้อมูลอยู่แถว 2 ถึง 1389
+
+อยากได้สูตรรวมยอดขาย (คอลัมน์ I) เฉพาะช่องทาง &quot;องค์กร&quot; ในเดือนพฤศจิกายน 2569
+ปัญหาคือคอลัมน์ A บางแถวเป็นข้อความแบบ 14/11/2569 บางแถวเป็นวันที่จริงของ Excel
+
+ขอ 2 อย่าง
+1. สูตรสร้างคอลัมน์ใหม่ K ที่แปลงวันที่ทุกแถวให้เป็นวันที่จริงแบบ ค.ศ.
+2. สูตรรวมยอดโดยใช้คอลัมน์ K
+อธิบายทีละขั้นแบบคนไม่เก่ง Excel และบอกว่าต้องวางสูตรที่ช่องไหน</pre></div><p>ให้อธิบายสูตรที่คนอื่นเขียนไว้:</p><div class="pbox"><pre>อธิบายสูตรนี้เป็นภาษาคน ทีละท่อน เหมือนอธิบายให้น้องใหม่ฟัง
+แล้วบอกว่าถ้าจะพังได้ จะพังเพราะอะไร
+
+=IFERROR(XLOOKUP(F2,ราคา!A:A,ราคา!B:B)*G2*(1-IF(D2=&quot;โมเดิร์นเทรด&quot;,0.32,0)),&quot;ไม่พบสินค้า&quot;)</pre></div><p>ซ่อมสูตรพัง:</p><div class="pbox"><pre>สูตรนี้ขึ้น #VALUE! ทั้งคอลัมน์ ช่วยหาสาเหตุและแก้ให้หน่อย
+=SUMIFS(I:I,D:D,&quot;องค์กร&quot;,A:A,&quot;&gt;=&quot;&amp;&quot;01/11/2569&quot;,A:A,&quot;&lt;=&quot;&amp;&quot;30/11/2569&quot;)
+บอกด้วยว่าครั้งหน้าจะเช็กเองได้ยังไง</pre></div><div class="stuck"><b>ถ้าติด ทำแบบนี้</b><ul><li>วางสูตรแล้ว error → ก๊อปข้อความ error ทั้งบรรทัดกลับไปถามในแชตเดิม</li><li>Excel ของคุณเป็นภาษาไทย / ใช้ ; แทน , → บอกมันว่า "Excel ของผมใช้เครื่องหมาย ; คั่น"</li></ul></div><textarea class="jot" data-k="v2_11" placeholder="สูตรที่ได้"></textarea></div><div class="card"><div class="chead"><span class="num">E3</span><h3>รายการส่ง 40 จุด → แผนรถรายวัน</h3><span class="badge b-g">ฟรีทำได้</span><span class="pm">เฉพาะรอบบ่าย</span></div><p>เปิด <span class="file">E3-รายการจัดส่งกระเช้า-14-18ธค.csv</span> ด้วย Notepad → คัดลอกทั้งหมดมาวางแทน [วาง...] → อ่านส่วน<b>ปัญหาที่จัดไม่ลง</b>ก่อน</p><div class="pbox"><pre>คุณคือผู้วางแผนจัดส่งของโรงงานที่ อ.สามพราน นครปฐม
+ข้างล่างคือรายการส่งกระเช้าสัปดาห์ 14–18 ธ.ค. 2569
+[วางเนื้อหาไฟล์ E3-รายการจัดส่งกระเช้า-14-18ธค.csv]
+===
+รถที่มี
+- รถ 4 ล้อ (คนขับ: สมศักดิ์) ใส่ได้เที่ยวละ 120 ใบ (กติกาใหม่: ซ้อนไม่เกิน 3 ชั้น) วิ่งได้วันละ 2 เที่ยว
+- รถ 6 ล้อเช่า (คนขับ: บุญมี) ใส่ได้เที่ยวละ 260 ใบ ว่างเฉพาะ 15 และ 17 ธ.ค. วันละ 1 เที่ยว
+
+งานที่ต้องการ
+1. ตรวจรายการก่อน: ออเดอร์ไหนข้อมูลไม่ครบ หรือวันส่งอยู่นอกสัปดาห์นี้ ให้แยกออกมา
+2. จัดเที่ยวรถรายวัน รวมจุดที่อยู่ใกล้กัน และเคารพช่วงเวลารับของ
+3. ตาราง: วัน | รถ | เที่ยว | ลำดับจุดส่ง | จำนวนใบ | ช่วงเวลา
+4. บอกปัญหาที่จัดไม่ลง พร้อมทางเลือก
+
+ก่อนส่ง ตรวจตัวเอง: ไม่มีเที่ยวไหนเกินความจุ และทุกออเดอร์ของสัปดาห์นี้ถูกจัดครบ</pre></div><p>ต่อในแชตเดิม:</p><div class="pbox"><pre>ทำเช็กลิสต์ให้คุณสมศักดิ์ (คนขับรถ 4 ล้อ) สำหรับวันที่ 15 ธ.ค.
+เป็นข้อความไลน์ 1 ข้อความ เรียงตามลำดับจุดส่ง มีชื่อผู้รับ เบอร์ ช่วงเวลา และข้อควรระวังของแต่ละจุด</pre></div><p class="hint">ควรเจอ: ออเดอร์นอกสัปดาห์ 2 รายการ · ไม่มีวันส่ง 1 · ที่อยู่ไม่ครบ 1 · ออเดอร์ 260 ใบวันที่ 18 แต่รถ 6 ล้อไม่ว่าง</p><textarea class="jot" data-k="v2_12" placeholder="มันเจอปัญหากี่ข้อ"></textarea></div><div class="card"><div class="chead"><span class="num">E4</span><h3>ซ้อมคุยด้วยเสียง · เลือก 1 สถานการณ์</h3><span class="badge b-g">ฟรีทำได้</span><span class="pm">เฉพาะรอบบ่าย</span></div><p>ใช้แอป ChatGPT บนมือถือ: พิมพ์ prompt ในแชตก่อน → กดปุ่ม <b>Voice</b> แล้วเริ่มพูด · ใส่หูฟังข้างเดียว จับคู่กัน คนหนึ่งพูด อีกคนจดว่าพูดติดตรงไหน</p><p><b>ก · ลูกค้าโมโห</b></p><div class="pbox"><pre>เรามาซ้อมบทบาทกัน คุณคือคุณศิริพร ผู้จัดการฝ่ายธุรการของลูกค้าองค์กร
+ที่ได้รับกระเช้าเสียหาย 11 ใบจาก 200 ใบ งานเลี้ยงคือวันศุกร์นี้ และคุณกำลังไม่พอใจมาก
+ผมคือพนักงานขายที่โทรไปขอโทษและเสนอทางแก้
+ให้พูดเหมือนลูกค้าจริง ขัดจังหวะได้ ถามคำถามยาก ๆ ได้ ตอบสั้น ๆ ทีละประโยค
+เมื่อผมพูดว่า &quot;จบการซ้อม&quot; ให้สรุปว่าผมทำได้ดี 2 ข้อ และควรปรับ 2 ข้อ</pre></div><p><b>ข · ต่อรองซัพพลายเออร์</b></p><div class="pbox"><pre>เรามาซ้อมเจรจากัน คุณคือเจ้าของร้านตะกร้าหวายที่ส่งของให้เราช้าไป 2 รอบ (6 วัน และ 4 วัน)
+ผมคือฝ่ายจัดซื้อ จะขอให้ส่งตรงเวลาในรอบหน้า และขอส่วนลดชดเชย
+ให้ต่อรองแบบคนค้าขายจริง มีเหตุผลของตัวเอง ไม่ยอมง่าย ๆ
+เมื่อผมพูดว่า &quot;จบการซ้อม&quot; ให้บอกว่าผมได้อะไร เสียอะไร และควรพูดอะไรเพิ่ม</pre></div><p><b>ค · ซ้อมพรีเซนต์</b></p><div class="pbox"><pre>เรามาซ้อมนำเสนอกัน คุณคือกรรมการผู้จัดการที่ละเอียดเรื่องตัวเลขและเวลาน้อย
+ผมกำลังเสนอขออนุมัติงบ 3.38 ล้านบาท สำหรับเครื่องอบสำรอง ทีมขายองค์กร และกล่องกันกระแทก
+ให้ฟังผมพูด 1 นาทีแรก แล้วถามคำถามยาก ๆ ทีละข้อ รวม 3 ข้อ
+เมื่อผมพูดว่า &quot;จบการซ้อม&quot; ให้คะแนนความน่าเชื่อถือเต็ม 10 พร้อมเหตุผล</pre></div><textarea class="jot" data-k="v2_13" placeholder="คะแนน / คำแนะนำที่ได้"></textarea></div></section><section id="rules"><div class="shead"><span class="tag">ช่วง 6</span><h2>กติกา และก้าวต่อไป</h2><span class=time>18 นาที</span></div><div class="card"><h3>3 ข้อห้าม เวอร์ชันใหม่</h3><ol>
+<li><b>ห้ามใส่ข้อมูลลับบริษัทหรือข้อมูลลูกค้าจริง ในบัญชีส่วนตัว</b> — ทั้ง ChatGPT และ NotebookLM · เปลี่ยนชื่อ/ตัวเลขสำคัญเป็นสมมติก่อน หรือใช้บัญชีที่บริษัทอนุญาต</li>
+<li><b>ห้ามส่งงานของ AI ออกไปโดยไม่ตรวจ</b> — ตัวเลข ชื่อ วันที่ และคำที่ AI เติมเอง</li>
+<li><b>ห้ามกด "อนุญาต" โดยไม่อ่าน</b> — ให้เข้าเฉพาะที่จำเป็น และคนกดส่งต้องเป็นคุณ</li></ol>
+<p class="hint">"ชื่อคุณอยู่บนงานนั้น ไม่ใช่ชื่อ AI"</p></div><div class="card"><div class="chead"><span class="num">7</span><h3>การบ้าน 7 วัน</h3></div><table>
+<tr><td style="width:18%"><b>วัน 1–2</b></td><td><b>สไลด์งานจริง 1 ชุด</b> — เอกสารงานของคุณที่ไม่ลับ → NotebookLM → prompt 3 คำถามข้างล่าง → ตรวจ 3 อย่าง</td></tr>
+<tr><td><b>วัน 3–5</b></td><td><b>สูตรใหม่ทุกวัน</b> — งานซ้ำ ๆ 1 อย่าง ใช้ R-C-C-F + 2 ประโยคทอง จดว่าประหยัดได้กี่นาที</td></tr>
+<tr><td><b>วัน 6–7</b></td><td><b>ลองมอบงาน</b> — (ถ้ามีคอม) ลงแอป ChatGPT → โหมด Work กับโฟลเดอร์งานที่ไม่ลับ 1 งาน</td></tr></table>
+<p><b>แม่แบบ prompt สไลด์</b> — เติม [วงเล็บ] แล้ววางในช่อง Describe ของ Slide deck</p><div class="pbox"><pre>สไลด์นี้สำหรับ: [ใครฟัง ตำแหน่งอะไร ในโอกาสไหน]
+ฟังจบอยากให้: [ตัดสินใจ / อนุมัติ / ทำอะไร]
+ข้อความหลัก 3 ข้อ:
+1) [...]
+2) [...]
+3) [...]
+กติกา: ภาษาไทยทั้งหมด · 1 สไลด์ 1 ประเด็น · ตัวหนังสือน้อย ตัวเลขใหญ่ · ใช้ตัวเลขจากเอกสารเท่านั้น ห้ามแต่งเพิ่ม · สไลด์สุดท้ายคือ [สิ่งที่ขอ]</pre></div><div class="win"><b>ส่งในกลุ่มไลน์:</b> ภาพสไลด์ 1 หน้า + ประหยัดเวลาไปเท่าไหร่ — ผู้สอนจะตามผลใน 7 วัน</div><textarea class="jot" data-k="v2_14" placeholder="งานที่จะทำสไลด์ / เอกสารที่จะใช้"></textarea></div></section>
+<footer>ไฟล์ตัวอย่างทั้งหมดเป็นข้อมูลสมมติของ บจก. หอมกรุ่น ฟู้ดแอนด์กิฟท์ (ไม่มีอยู่จริง) · เก็บคู่มือนี้ไว้ใช้ต่อได้</footer>
+</main>
+<script>
+// ---------- ปุ่มคัดลอก ----------
+document.querySelectorAll('.pbox').forEach(function(box){
+  var pre = box.querySelector('pre');
+  var btn = document.createElement('button');
+  btn.className = 'copy'; btn.textContent = 'คัดลอก';
+  btn.addEventListener('click', function(){
+    var t = pre.innerText;
+    var done = function(){
+      btn.textContent = 'คัดลอกแล้ว'; btn.classList.add('ok');
+      setTimeout(function(){ btn.textContent='คัดลอก'; btn.classList.remove('ok'); }, 1600);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(t).then(done, fallback);
+    } else { fallback(); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = t; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); }
+      catch(e){ btn.textContent='กด Ctrl+C'; }
+      document.body.removeChild(ta);
+    }
+  });
+  box.appendChild(btn);
+});
+
+// ---------- เก็บสิ่งที่ผู้เรียนจด ----------
+document.querySelectorAll('.jot').forEach(function(el){
+  var k = 'wb_' + el.dataset.k;
+  try { var v = localStorage.getItem(k); if (v) el.value = v; } catch(e){}
+  el.addEventListener('input', function(){
+    try { localStorage.setItem(k, el.value); } catch(e){}
+  });
+});
+</script>
+</body>
+</html>

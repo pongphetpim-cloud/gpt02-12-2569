@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8">
+<title>เตรียมตัวก่อนอบรม — AI ช่วยงาน ภาค 2</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+@page{size:A4;margin:9mm 12mm}
+:root{
+  --ink:#14171d; --ink2:#3a414d; --ink3:#6f7887;
+  --brand:#0e5e58; --soft:#e1f0ed;
+  --g:#0f7a4a; --gs:#e6f4ec;
+  --y:#a8690a; --ys:#fdf2e0;
+  --r:#9c2626; --rs:#fbeceb;
+  --font:"IBM Plex Sans Thai","Noto Sans Thai","Leelawadee UI",Tahoma,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);color:var(--ink);background:#fff;width:184mm;margin:0 auto;
+  font-size:11.3px;line-height:1.55;padding:0}
+
+.hero{background:var(--brand);color:#fff;border-radius:9px;padding:13px 20px;margin-bottom:10px}
+.hero h1{font-size:22px;line-height:1.18;letter-spacing:-.6px}
+.hero p{font-size:12.4px;color:#c4e3dd;margin-top:5px}
+.hero .when{margin-top:9px;padding-top:8px;border-top:1px solid #3d827a;
+  display:flex;flex-wrap:wrap;gap:6px 20px;font-size:11.6px;color:#d6ece8}
+.hero .note2{margin-top:5px;font-size:10.8px;color:#c4e3dd}
+.hero .note2 b{color:#fff}
+.hero .when b{color:#fff}
+.hero .when u{display:inline-block;border-bottom:1px dotted #8cc4bb;min-width:120px;text-decoration:none}
+
+h2{font-size:14.4px;letter-spacing:-.3px;margin-bottom:6px;display:flex;align-items:center;gap:9px}
+h2 .n{width:23px;height:23px;flex:none;border-radius:7px;background:var(--brand);color:#fff;
+  display:grid;place-items:center;font-size:13px;font-weight:700}
+h2 .t{margin-left:auto;font-size:10.6px;font-weight:400;color:var(--ink3)}
+
+.card{border:1.2px solid #d9d5cc;border-radius:9px;padding:11px 15px;margin-bottom:9px;break-inside:avoid}
+.card.hi{background:var(--soft);border-color:#bfded8}
+.card.warn{background:var(--rs);border-color:#e8c9c7}
+.card.ok{background:var(--gs);border-color:#c3e2d1}
+
+ol.steps{margin:6px 0 0 0;list-style:none;counter-reset:s}
+ol.steps li{counter-increment:s;position:relative;padding-left:22px;margin-bottom:4px;line-height:1.55}
+ol.steps li::before{content:counter(s) ".";position:absolute;left:0;font-weight:700;color:var(--brand)}
+ul.dot{margin:5px 0 0 16px}
+ul.dot li{margin-bottom:4px;line-height:1.55}
+
+.chk{display:flex;gap:9px;align-items:flex-start;margin-bottom:6px}
+.chk .b{width:14px;height:14px;flex:none;border:1.5px solid var(--ink);border-radius:3px;margin-top:3px}
+.chk b{display:block;font-size:12.4px}
+.chk span{color:var(--ink2);font-size:11.2px;line-height:1.5;display:block}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.faq{border-top:1px solid #ddd9d0;padding-top:5px;margin-top:5px}
+.faq:first-of-type{border:0;padding-top:0;margin-top:0}
+.faq b{display:block;font-size:11.8px;color:var(--brand)}
+.faq span{color:var(--ink2);line-height:1.5}
+
+.big{font-size:12.6px}
+.qr{width:26mm;height:26mm;display:block;border:1px solid #bfded8;border-radius:6px;background:#fff}
+.dim{color:var(--ink3)}
+.tag{display:inline-block;background:var(--ys);color:var(--y);font-size:10.2px;font-weight:700;
+  padding:1px 8px;border-radius:12px;vertical-align:1px}
+.link{display:inline-block;border:1.4px dashed #b9b4a8;border-radius:7px;padding:9px 14px;
+  margin-top:7px;font-size:11.4px;color:var(--ink2);width:100%}
+.link b{color:var(--ink)}
+.p2{break-before:page;padding-top:2mm}
+.p2hd{font-size:10.4px;color:var(--ink3);border-bottom:1px solid #ddd9d0;
+  padding-bottom:5px;margin-bottom:10px;display:flex;justify-content:space-between}
+.ft{margin-top:8px;border-top:1px solid #bbb;padding-top:6px;color:var(--ink3);font-size:10px;
+  display:flex;justify-content:space-between}
+
+.faq span b{display:inline;color:var(--ink);font-size:inherit}
+.nbc{background:#f3f1fe;border-color:#d9d3fb}
+.nbc ol.steps li::before{color:#5b46d6}
+.nbtag{display:inline-block;background:#5b46d6;color:#fff;font-size:10px;font-weight:700;letter-spacing:.8px;padding:1px 8px;border-radius:5px;vertical-align:1px}
+</style></head>
+<body>
+<div class="hero">
+<h1>เตรียมตัวก่อนเข้าอบรม<br>AI ช่วยงาน ภาค 2</h1>
+<p>ทำสไลด์ประชุมใน 30 นาทีด้วย NotebookLM + มอบงานให้ ChatGPT ทำทั้งชิ้น — ใช้เวลาเตรียม 10 นาที</p>
+<div class="when"><span><b>วันอบรม</b> พุธ 2 ธันวาคม 2569</span><span><b>รอบเช้า</b> 09:00–12:00 น.</span><span><b>รอบบ่าย</b> 13:00–17:00 น.</span></div>
+<p class="note2">คุณเข้าอบรม <b>รอบใดรอบหนึ่ง</b> ตามที่ผู้จัดแจ้ง — รอบบ่ายมีโมดูลเสริมเพิ่มอีก 1 ชั่วโมง · <b>ทุกอย่างในคลาสใช้บัญชีฟรีได้</b></p>
+</div>
+
+<!-- ============ 1 ============ -->
+<h2><span class="n" style="background:#5b46d6">1</span>ลองเข้า NotebookLM มาก่อน 1 ครั้ง <span class="t">ใช้เวลา 5 นาที · ฟรี · ข้อนี้สำคัญที่สุด</span></h2>
+<div class="card nbc">
+<p><span class="nbtag">ของใหม่</span> &nbsp;เรื่องแรกของคลาสคือทำสไลด์ด้วย <b>NotebookLM</b> ของ Google (ชื่อใหม่ <b>Gemini Notebook</b> — ตัวเดียวกัน)
+คนที่เข้าได้ตั้งแต่ที่บ้าน จะได้สไลด์ชุดแรกภายใน 30 นาทีแรกของคลาส</p>
+<ol class="steps">
+<li>เปิดเบราว์เซอร์ (Chrome / Edge) เข้า <b>notebooklm.google.com</b> <span class="dim">— จะเด้งไปหน้าใหม่ชื่อ Gemini Notebook เอง ไม่ต้องตกใจ</span></li>
+<li>ล็อกอินด้วยบัญชี Google <span class="dim">(Gmail ส่วนตัวได้เลย)</span></li>
+<li>กด <b>+ New notebook</b> (มุมขวาบน) แล้วใส่ไฟล์อะไรก็ได้ที่ไม่ลับ 1 ไฟล์ เช่น PDF หรือ Word</li>
+<li>พิมพ์ถาม 1 คำถามเกี่ยวกับไฟล์นั้น — ถ้ามันตอบกลับมาพร้อมเลขอ้างอิง <b>[1]</b> แปลว่าพร้อมแล้ว</li>
+</ol>
+<div style="margin-top:7px;padding-top:6px;border-top:1px solid #d9d3fb">
+<b>ถ้าเข้าไม่ได้ หรือขึ้นว่าไม่มีสิทธิ์ใช้งาน:</b> บัญชี Google ของบริษัทบางแห่งปิดบริการนี้ไว้ ให้ใช้ <b>Gmail ส่วนตัว</b> แทน ·
+ถ้ายังไม่มี Gmail ให้สมัครมาก่อน (ฟรี 3 นาที) อย่ารอไปสมัครในห้อง
+</div>
+</div>
+
+<!-- ============ 2 ============ -->
+<h2><span class="n">2</span>เช็ก ChatGPT ว่ายังเข้าได้ <span class="t">2 นาที</span></h2>
+<div class="card hi">
+<ol class="steps">
+<li>เข้า <b>chatgpt.com</b> ล็อกอินบัญชีเดิมที่ใช้ตอนเรียนรอบที่แล้ว แล้วลองพิมพ์ 1 ข้อ</li>
+<li>มือถือ: ติดตั้ง/อัปเดต <b>แอป ChatGPT</b> ให้เป็นรุ่นล่าสุด <span class="dim">(รอบบ่ายมีช่วงซ้อมคุยด้วยเสียง)</span></li>
+<li><b>ไม่บังคับ:</b> ถ้ามีคอมส่วนตัว ลง <b>แอป ChatGPT บนคอม</b> ไว้ด้วย <span class="dim">— ใช้ทำการบ้าน "มอบงานให้ AI ทำทั้งชิ้น"</span></li>
+</ol>
+</div>
+
+<!-- ============ 3 ============ -->
+<h2><span class="n">3</span>เตรียมของ + เข้ากลุ่มไลน์</h2>
+<div class="two">
+<div class="card">
+<div class="chk"><span class="b"></span><div><b>โน้ตบุ๊ก + สายชาร์จ</b> <span>คลาสนี้ลงมือทำตลอด เครื่องอะไรก็ได้ที่เปิดเว็บได้</span></div></div>
+<div class="chk"><span class="b"></span><div><b>มือถือ + หูฟัง</b> <span>หูฟังข้างเดียวก็พอ ใช้ตอนซ้อมคุยด้วยเสียง</span></div></div>
+<div class="chk" style="margin-bottom:0"><span class="b"></span><div><b>รหัสผ่าน Google และ ChatGPT</b> <span>ต้องล็อกอินทั้ง 2 อย่าง ถ้าจำไม่ได้ให้รีเซ็ตมาก่อน</span></div></div>
+</div>
+<div class="card hi" style="display:flex;gap:12px;align-items:flex-start">
+<div style="flex:none;text-align:center">
+<img class="qr" src="data:image/jpeg;base64,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" alt="QR กลุ่มไลน์ของคลาส">
+<span class="dim" style="font-size:9.8px;display:block;margin-top:2px">กลุ่มเดิม</span>
+</div>
+<div style="min-width:0">
+<div class="chk"><span class="b"></span><div><b>อยู่ในกลุ่มไลน์ของคลาส</b> <span>ใช้กลุ่มเดิมจากรอบที่แล้ว ถ้าออกไปแล้วสแกน QR หรือเข้า <b>line.me/R/ti/g/AXVM5NDZLE</b></span></div></div>
+<div class="chk" style="margin-bottom:0"><span class="b"></span><div><b>ดาวน์โหลดไฟล์ตัวอย่างมาก่อน</b> <span>โหลดจากลิงก์ในกลุ่มไลน์ <b>แตกไฟล์ zip</b> ไว้ในเครื่อง และจำให้ได้ว่าเก็บตรงไหน</span></div></div>
+</div>
+</div>
+</div>
+
+<!-- ============ 4 ============ -->
+<h2><span class="n">4</span>คิดล่วงหน้าไว้ 2 เรื่อง <span class="t">ไม่ต้องเขียนยาว นึกไว้ในหัวก็พอ</span></h2>
+<div class="card ok">
+<div class="two">
+<div><b class="big">ก. สไลด์ที่คุณอยากได้ 1 ชุด</b>
+<p style="margin-top:3px">งานไหนที่คุณต้องทำสไลด์บ่อย เช่น สรุปยอดเดือน รายงานโครงการ อบรมพนักงานใหม่ —
+และมีเอกสารต้นทาง<b>ที่ไม่ลับ</b>อยู่แล้ว (รายงาน คู่มือ บันทึก) <span class="dim">ใช้ทำการบ้านหลังคลาส</span></p></div>
+<div><b class="big">ข. เรื่องเล่า 30 วินาที</b>
+<p style="margin-top:3px">หลังคลาสรอบที่แล้ว คุณใช้ AI กับงานอะไรแล้ว<b>เวิร์ก</b> หรือ<b>พัง</b> — เรื่องพังมีค่าพอ ๆ กับเรื่องเวิร์ก
+ผู้สอนจะสุ่มถาม 2 คนตอนเปิดคลาส</p></div>
+</div>
+</div>
+
+<!-- ============ หน้า 2 ============ -->
+<div class="p2"></div>
+<div class="p2hd"><span>เตรียมตัวก่อนเข้าอบรม AI ช่วยงาน ภาค 2 — หน้า 2</span><span>เรื่องที่ควรรู้ก่อนมา</span></div>
+
+<div class="card warn">
+<h2 style="margin-bottom:5px"><span class="n" style="background:var(--r)">!</span> ห้ามเอามา — ข้อนี้ห้ามพลาด</h2>
+<p><b>อย่าใส่ข้อมูลลับของบริษัทหรือข้อมูลลูกค้าจริงลงในบัญชีส่วนตัว</b> ทั้ง ChatGPT และ NotebookLM — เช่น รายชื่อลูกค้า ราคาทุน สัญญา ข้อมูลพนักงาน</p>
+<p style="margin-top:4px" class="dim">ในคลาสเราเตรียมไฟล์ของบริษัทสมมติไว้ให้ครบแล้ว ส่วนตอนทำการบ้านด้วยงานจริง ให้เปลี่ยนชื่อและตัวเลขสำคัญก่อน หรือใช้บัญชีที่บริษัทอนุญาต</p>
+</div>
+
+<h2 style="margin-top:10px"><span class="n">?</span>คำถามที่ถามกันบ่อย</h2>
+<div class="two">
+<div class="card">
+<div class="faq"><b>ต้องเสียเงินไหม</b> <span>ไม่ต้อง <b>NotebookLM และ ChatGPT บัญชีฟรีเรียนได้ทั้งคลาส</b> มีช่วงเดียวที่ผู้สอนเดโมให้ดู (โหมด Work) ไม่ต้องซื้อมาเรียน</span></div>
+<div class="faq"><b>NotebookLM ต่างจาก ChatGPT ยังไง</b> <span>NotebookLM ตอบจาก<b>เอกสารที่คุณใส่เท่านั้น</b> และบอกที่มาทุกประโยค เหมาะกับงานที่ต้องอิงเอกสารจริง เช่น สรุปรายงานเป็นสไลด์</span></div>
+<div class="faq"><b>ใช้มือถืออย่างเดียวได้ไหม</b> <span>ลำบากมาก ช่วงทำสไลด์และ Excel ต้องใช้จอใหญ่ <b>แนะนำให้เอาโน้ตบุ๊กมา</b></span></div>
+</div>
+<div class="card">
+<div class="faq"><b>ไม่ได้ทำการบ้านรอบที่แล้ว มาได้ไหม</b> <span>ได้ คลาสนี้ทวนสูตรสั่งงานเดิมให้ก่อน 1 นาที แล้วต่อยอด ไม่มีใครถูกทิ้งไว้ข้างหลัง</span></div>
+<div class="faq"><b>บัญชีบริษัทเข้า NotebookLM ไม่ได้</b> <span>ใช้ Gmail ส่วนตัวแทน — ไฟล์ในคลาสเป็นข้อมูลสมมติ ใส่บัญชีส่วนตัวได้</span></div>
+<div class="faq"><b>มาสายได้ไหม</b> <span>พยายามอย่าสาย <b>30 นาทีแรกคือช่วงทำสไลด์ด้วย NotebookLM</b> ซึ่งเป็นไฮไลต์ของวัน พลาดแล้วตามยาก</span></div>
+</div>
+</div>
+
+<div class="card" style="margin-top:2px;background:#f5f3ef">
+<p style="text-align:center;font-size:12.4px">
+<b>สรุปสั้น ๆ:</b> ลองเข้า notebooklm.google.com + สร้างสมุด 1 อัน · เช็ก chatgpt.com · เอาโน้ตบุ๊ก + หูฟังมา · โหลดไฟล์ตัวอย่างจากกลุ่มไลน์ · นึกไว้ 1 งานที่อยากทำสไลด์
+<span class="tag">แค่นี้พอ</span></p>
+</div>
+
+<div class="ft">
+<span>AI ช่วยงาน ภาค 2 · คู่มือเตรียมตัวก่อนอบรม</span>
+<span>มีคำถามก่อนวันอบรม ถามได้ในกลุ่มไลน์ของคลาส</span>
+</div>
+</body>
+</html>
